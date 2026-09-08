@@ -1,11 +1,11 @@
-# 基于 ROS2 的仿真机械臂控制系统
+# 基于 ROS2 的机械臂控制系统
 
- **ROS2 Simulated Robotic Arm Control System**
+ **ROS2 Robotic Arm Control System**
 
-这是一个基于 **ROS2 Jazzy** 的机械臂控制可视化项目，用于在无实体硬件条件下验证一条最小控制链路：
+这是一个基于 **ROS2 Jazzy** 的机械臂控制可视化项目，用于在无实体硬件条件下验证机械臂控制链路：
 
 ```text
-键盘目标输入 -> 仿真执行节点 -> 关节状态发布 -> URDF 机械臂模型 + 场景目标 -> RViz2 可视化
+目标输入 -> 仿真执行节点 -> 关节状态发布 -> 机械臂模型 + 场景目标 -> 可视化
 ```
 
 项目当前聚焦 ROS2 基础开发、节点通信、自定义接口、URDF/xacro 建模、`/joint_states` 发布、TF 发布、RViz2 Marker 场景显示与可视化验证。
@@ -16,11 +16,7 @@ RViz2 机械臂可视化：
 
 ![RViz2 机械臂可视化](docs/images/image-sim-scene.png)
 
-ROS2 通信图：
-
-![ROS2 通信图](docs/images/image-rqt-graph.png)
-
-## 功能包结构
+功能包结构
 
 ```text
 src/
@@ -29,11 +25,11 @@ src/
   armpy_sim/            # 键盘控制、仿真执行、joint_states 转换、场景 Marker、系统 launch
 ```
 
-| Package | Role |
-| --- | --- |
-| `armpy_interfaces` | 定义 `ArmPose.msg` 和 `ArmPoseRange.srv`，作为节点间通信协议 |
-| `armpy_description` | 定义带简化夹爪的机械臂 URDF/xacro 模型、RViz2 显示配置和模型显示入口 |
-| `armpy_sim` | 提供键盘输入节点、仿真执行节点、目标坐标到 `/joint_states` 的转换节点、场景 Marker 节点和一键启动入口 |
+| Package               | Role                                                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------ |
+| `armpy_interfaces`  | 定义`ArmPose.msg` 和 `ArmPoseRange.srv`，作为节点间通信协议                                        |
+| `armpy_description` | 定义带简化夹爪的机械臂 URDF/xacro 模型、RViz2 显示配置和模型显示入口                                   |
+| `armpy_sim`         | 提供键盘输入节点、仿真执行节点、目标坐标到`/joint_states` 的转换节点、场景 Marker 节点和一键启动入口 |
 
 ## 系统链路
 
@@ -117,12 +113,12 @@ ros2 launch armpy_sim keyboard_rviz.launch.py start_keyboard:=true
 
 ## 键盘控制
 
-| Key | Effect |
-| --- | --- |
+| Key     | Effect              |
+| ------- | ------------------- |
 | `W/S` | increase/decrease x |
 | `Q/E` | increase/decrease y |
 | `A/D` | increase/decrease z |
-| `C` | quit |
+| `C`   | quit                |
 
 ## 常用检查命令
 
